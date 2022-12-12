@@ -1,6 +1,6 @@
 import { IUser, Post } from "global";
 import { createContext, useReducer, useMemo, useEffect } from "react";
-import userServices from "../services/user-services";
+import userServices from "services/user-services";
 import { initialAppContextValues } from "./AppContext.const";
 import { AppContextProviderProps, AppContextState } from "./AppContext.types";
 import { mainReducer } from "./Reducers/mainReducer";
@@ -23,6 +23,7 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
       const usersWithPostsPromisses = usersList.map((user) =>
         userServices.getUserPosts(user.id)
       );
+
       await Promise.all(usersWithPostsPromisses).then((values: Post[][]) => {
         values.map((postsList) => {
           if (postsList.length > 0) {

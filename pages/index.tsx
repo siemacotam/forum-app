@@ -1,14 +1,4 @@
 import Head from "next/head";
-import axios from "axios";
-import { GetStaticProps } from "next";
-import { AppContextProvider } from "../AppContext/AppContext";
-import { ThemeProvider } from "@mui/material";
-import { theme } from "../theme";
-import userServices from "../services/user-services";
-import { IUser } from "../global";
-import { useAppContext } from "../hooks";
-import { setUsers } from "../AppContext/Reducers/mainReducer.helpers";
-import { useEffect, useState } from "react";
 
 export default function Home() {
   return (

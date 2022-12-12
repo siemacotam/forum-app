@@ -1,22 +1,29 @@
 import { useState } from "react";
-import { Stack, IconButton } from "@mui/material";
+import {
+  Stack,
+  IconButton,
+  Card,
+  CardContent,
+  Typography,
+} from "@mui/material";
 import { PostElementProps } from "./PostElement.types";
+import { Post } from "global";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import Typography from "@mui/material/Typography";
 import { DeleteModal } from "components/DeleteModal/DeleteModal";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import { useRouter } from "next/router";
 import { theme } from "theme";
-import { Post } from "global";
+import { useAppContext } from "hooks";
+import { setMessage } from "AppContext/Reducers/mainReducer.helpers";
+import { statusses } from "components/AlertMessage/AlertMessage.const";
 
 export const PostElement = ({
   post,
   handleLoading,
   handleDelete,
-}: PostElementProps) => {
+}: PostElementProps): JSX.Element => {
   const [postToDelete, setPostToDelete] = useState<Post | null>(null);
   const { query, push } = useRouter();
+  const { dispatch } = useAppContext();
 
   const { id, title } = post;
 
@@ -25,12 +32,19 @@ export const PostElement = ({
       handleLoading();
       push(`/user/${query.userId}/post/${id}`);
     } else {
-      alert("To big id");
+      dispatch(
+        setMessage(
+          "Post was added without adding to database. You can check this one. Sorry",
+          statusses.error
+        )
+      );
     }
   };
 
   const openDialog = () => setPostToDelete(post);
   const closeDialog = () => setPostToDelete(null);
+
+  const shortTitle = title.length <= 50 ? title : title.slice(0, 50) + "...";
 
   return (
     <>
@@ -52,7 +66,9 @@ export const PostElement = ({
           onClick={navigateToPostPage}
         >
           <CardContent>
-            <Typography>{title}</Typography>
+            <Typography textAlign="center" component="p">
+              {shortTitle}
+            </Typography>
           </CardContent>
         </Card>
       </Stack>

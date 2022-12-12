@@ -11,7 +11,6 @@ export interface IPost {
 }
 
 export interface IForm {
-  id: number;
   handleClose: () => void;
   handleSubmit: (values: IPost) => Promise<void>;
 }

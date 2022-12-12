@@ -1,5 +1,6 @@
+import { Status } from "components/AlertMessage/AlertMessage.types";
 import { Dispatch } from "react";
-import { IUser, Post } from "../global";
+import { IUser } from "global";
 import { Actions } from "./Reducers/mainReducer.types";
 
 export type Values<T> = T[keyof T];
@@ -11,6 +12,10 @@ export interface AppContextState {
 
 export interface AppContextProps {
   users: IUser[];
+  message: {
+    text: string;
+    type: Status | null;
+  };
 }
 
 export interface AppContextProviderProps {

@@ -11,7 +11,6 @@ import {
 import { IUserProps } from "./User.types";
 import { useRouter } from "next/router";
 import { RowStack } from "components";
-import { randomColor } from "global";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -45,10 +44,7 @@ export const User = ({
         <CardContent>
           <Stack rowGap={2}>
             <RowStack>
-              <Avatar
-                variant="square"
-                // sx={{ bgcolor: randomColor() }}
-              >
+              <Avatar variant="square" sx={{ bgcolor: "purple" }}>
                 {username.substring(0, 1)}
               </Avatar>
               <Stack>

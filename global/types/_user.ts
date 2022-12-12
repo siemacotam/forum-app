@@ -1,3 +1,5 @@
+export type Values<T> = T[keyof T];
+
 export interface IUser {
   id: number;
   name: string;

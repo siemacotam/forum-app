@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Box,
   Button,
@@ -12,6 +11,7 @@ import userServices from "services/user-services";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
 import { CommentsList, PostDetails } from "components";
+import { theme } from "theme";
 
 interface UserPageProps {
   user: IUser;
@@ -19,16 +19,9 @@ interface UserPageProps {
   comments: Comment[];
 }
 
-function UserPage({
-  user: { id, name, username, email, phone, website, posts },
-  post,
-  comments,
-}: UserPageProps) {
-  const [openComments, setOpenComments] = useState(false);
-  console.log(name, post, comments);
-
+function UserPage({ user: { id, name }, post, comments }: UserPageProps) {
   return (
-    <Card variant="outlined">
+    <Card variant="outlined" sx={{ bgcolor: theme.palette.grey[100] }}>
       <CardContent>
         <Stack rowGap={3}>
           <Typography component="span" textAlign="center" fontSize="1.5rem">

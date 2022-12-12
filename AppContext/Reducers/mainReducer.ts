@@ -1,4 +1,10 @@
+import { emptyMessageState } from "components/AlertMessage/AlertMessage.const";
 import { AppContextProps } from "../AppContext.types";
+import {
+  addPostHandler,
+  deletePostHandler,
+  setUserHandler,
+} from "./mainReducer.handlers";
 import { Actions, ActionType } from "./mainReducer.types";
 
 export const mainReducer = (
@@ -7,38 +13,20 @@ export const mainReducer = (
 ): AppContextProps => {
   switch (action.type) {
     case ActionType.SET_USERS:
-      return { users: action.payload };
+      return { ...state, users: action.payload };
     case ActionType.SET_USER_POSTS:
-      const index = state.users.findIndex(
-        (user) => user.id === action.payload.id
-      );
-      const updatedUsers = [...state.users];
-      if (updatedUsers[index]) {
-        updatedUsers[index].posts = action.payload.posts;
-      }
-      return { users: updatedUsers };
+      return setUserHandler(state, action);
     case ActionType.ADD_POST:
-      const userIndex = state.users.findIndex(
-        (user) => user.id === action.payload.userId
-      );
-      let updatedArray = [...state.users];
-      if (updatedArray[userIndex]) {
-        updatedArray[userIndex].posts.push(action.payload);
-      }
-      return { users: updatedArray };
+      return addPostHandler(state, action);
     case ActionType.DELETE_POST:
-      const indexOfUser = state.users.findIndex(
-        (user) => user.id === action.payload.userId
-      );
-      let updatedList = [...state.users];
-      if (updatedList[indexOfUser]) {
-        updatedList[indexOfUser].posts = [
-          ...updatedList[indexOfUser].posts.filter(
-            (post) => post.id !== action.payload.id
-          ),
-        ];
-      }
-      return { users: updatedList };
+      return deletePostHandler(state, action);
+    case ActionType.SET_MESSAGE:
+      return { ...state, message: action.payload };
+    case ActionType.CLEAR_MESSAGE:
+      return {
+        ...state,
+        message: emptyMessageState,
+      };
     default:
       return state;
   }

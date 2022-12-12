@@ -1,8 +1,11 @@
+import { Status } from "components/AlertMessage/AlertMessage.types";
 import { IUser, Post } from "global";
 import {
   ActionType,
   AddPost,
+  ClearMessage,
   DeletePost,
+  SetMessage,
   SetPosts,
   SetUsers,
 } from "./mainReducer.types";
@@ -25,4 +28,13 @@ export const addPost = (post: Post): AddPost => ({
 export const deletePost = (post: Post): DeletePost => ({
   type: ActionType.DELETE_POST,
   payload: post,
+});
+
+export const setMessage = (text: string, type: Status | null): SetMessage => ({
+  type: ActionType.SET_MESSAGE,
+  payload: { text, type },
+});
+
+export const clearMessage = (): ClearMessage => ({
+  type: ActionType.CLEAR_MESSAGE,
 });

@@ -1,27 +1,45 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import { useState } from "react";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  CircularProgress,
+} from "@mui/material";
 import { DeleteModalProps } from "./DeleteModal.types";
 import { useAppContext } from "hooks";
 import userServices from "services/user-services";
-import { deletePost } from "AppContext/Reducers/mainReducer.helpers";
+import {
+  deletePost,
+  setMessage,
+} from "AppContext/Reducers/mainReducer.helpers";
+import { statusses } from "components/AlertMessage/AlertMessage.const";
 
 export const DeleteModal = ({
   post,
   handleClose,
   handleDelete,
-}: DeleteModalProps) => {
+}: DeleteModalProps): JSX.Element => {
   const { dispatch } = useAppContext();
+  const [loading, setLoading] = useState(false);
 
   const handleDeletePost = async () => {
-    await userServices.deletePost(post.id);
-    handleDelete(post.id);
-    dispatch(deletePost(post));
+    setLoading(true);
+    try {
+      await userServices.deletePost(post.id);
+      dispatch(setMessage("Post deleted", statusses.success));
+      dispatch(deletePost(post));
+      handleDelete(post.id);
+    } catch {
+      dispatch(
+        setMessage("Something went wrong with deleting post", statusses.error)
+      );
+    }
+
     handleClose();
+    setLoading(false);
   };
 
   return (
@@ -33,9 +51,11 @@ export const DeleteModal = ({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Disagree</Button>
-        <Button onClick={handleDeletePost} autoFocus>
-          Agree
+        <Button disabled={loading} onClick={handleClose}>
+          Disagree
+        </Button>
+        <Button disabled={loading} onClick={handleDeletePost} autoFocus>
+          {loading ? <CircularProgress size={16} /> : "Agree"}
         </Button>
       </DialogActions>
     </Dialog>

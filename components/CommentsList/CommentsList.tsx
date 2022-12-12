@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Button, Box } from "@mui/material";
-import Stack from "@mui/material/Stack";
+import { Button, Box, Stack } from "@mui/material";
 import { CommentElement } from "components/CommentElement";
 import { CommentsListProps } from "./CommentsList.types";
 
-export const CommentsList = ({ comments }: CommentsListProps) => {
+export const CommentsList = ({ comments }: CommentsListProps): JSX.Element => {
   const [showComments, setShowComments] = useState(false);
 
   const openComments = () => setShowComments(!showComments);

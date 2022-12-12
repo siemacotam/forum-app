@@ -1,24 +1,23 @@
-import { useState } from "react";
-import { Button, Box } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Card, CardContent, Stack, Typography } from "@mui/material";
 import { PostDetailsProps } from "./PostDetails.types";
 
 export const PostDetails = ({
-  post: { id, body, title },
-}: PostDetailsProps) => {
-  return (
-    <Card variant="outlined">
-      <CardContent>
-        <Stack rowGap={2}>
-          <Typography fontWeight="bold" textAlign="center">
-            {title}
-          </Typography>
-          <Typography textAlign="center">{body}</Typography>
-        </Stack>
-      </CardContent>
-    </Card>
-  );
-};
+  post: { body, title },
+}: PostDetailsProps): JSX.Element => (
+  <Card variant="outlined">
+    <CardContent>
+      <Stack rowGap={2}>
+        <Typography fontWeight="bold" fontSize="1.4rem" textAlign="center">
+          {title}
+        </Typography>
+        <Card variant="outlined">
+          <CardContent>
+            <Typography textAlign="center" mb={3}>
+              {body}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Stack>
+    </CardContent>
+  </Card>
+);

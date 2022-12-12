@@ -7,22 +7,17 @@ import {
   Button,
   Grid,
 } from "@mui/material";
-import { addPost } from "AppContext/Reducers/mainReducer.helpers";
 import {
   useFormik,
   FormikProvider,
   Form as FormikForm,
   ErrorMessage,
 } from "formik";
-import { createId, maxContentWith } from "global";
-import { useAppContext } from "hooks";
-import userServices from "services/user-services";
+import { maxContentWith } from "global";
 import { initialValues, validationSchema } from "../AddPost.const";
 import { IForm, IPost } from "../AddPost.types";
 
-export const Form = ({ id, handleClose, handleSubmit }: IForm) => {
-  const { dispatch, state } = useAppContext();
-
+export const Form = ({ handleClose, handleSubmit }: IForm): JSX.Element => {
   const formik = useFormik<IPost>({
     initialValues,
     validationSchema,
@@ -32,8 +27,12 @@ export const Form = ({ id, handleClose, handleSubmit }: IForm) => {
       handleClose();
     },
   });
-  const { values, handleChange, handleBlur, isSubmitting } = formik;
-  const { body, title } = values;
+  const {
+    values: { body, title },
+    handleChange,
+    handleBlur,
+    isSubmitting,
+  } = formik;
 
   return (
     <Box maxWidth={maxContentWith} width="100%" mx="auto" mt={3} p={2}>
@@ -74,7 +73,11 @@ export const Form = ({ id, handleClose, handleSubmit }: IForm) => {
                 )}
               </ErrorMessage>
               <Stack direction="row" spacing={2} justifyContent="flex-end">
-                <Button variant="outlined" onClick={handleClose}>
+                <Button
+                  variant="outlined"
+                  disabled={isSubmitting}
+                  onClick={handleClose}
+                >
                   Back
                 </Button>
                 <Button

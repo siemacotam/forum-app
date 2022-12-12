@@ -9,3 +9,6 @@ export * from "./Loader";
 export * from "./PostDetails";
 export * from "./CommentElement";
 export * from "./CommentsList";
+export * from "./AlertMessage";
+export * from "./DeleteModal";
+export * from "./PostHeader";

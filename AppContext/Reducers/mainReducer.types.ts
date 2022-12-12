@@ -1,3 +1,4 @@
+import { Status } from "components/AlertMessage/AlertMessage.types";
 import { IUser, Post } from "global";
 
 export enum ActionType {
@@ -5,6 +6,8 @@ export enum ActionType {
   ADD_POST,
   SET_USER_POSTS,
   DELETE_POST,
+  SET_MESSAGE,
+  CLEAR_MESSAGE,
 }
 
 export interface SetUsers {
@@ -27,4 +30,22 @@ export interface DeletePost {
   payload: Post;
 }
 
-export type Actions = SetUsers | AddPost | SetPosts | DeletePost;
+export interface SetMessage {
+  type: ActionType.SET_MESSAGE;
+  payload: {
+    text: string;
+    type: Status | null;
+  };
+}
+
+export interface ClearMessage {
+  type: ActionType.CLEAR_MESSAGE;
+}
+
+export type Actions =
+  | SetUsers
+  | AddPost
+  | SetPosts
+  | DeletePost
+  | SetMessage
+  | ClearMessage;

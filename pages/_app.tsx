@@ -1,7 +1,6 @@
 import { Layout, UsersList } from "components";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { AppContextProvider } from "AppContext/AppContext";
-import { ThemeProvider } from "@mui/material";
 import { theme } from "theme";
 import { useRouter } from "next/router";
 import { NextComponentType, NextPageContext } from "next";
@@ -36,9 +35,7 @@ App.getInitialProps = async () => {
   let pageProps: { users: IUser[] } = { users: [] };
 
   try {
-    const data = await userServices
-      .getUsers()
-      .catch(() => console.log("error"));
+    const data = await userServices.getUsers();
 
     if (data) {
       pageProps.users = data;
