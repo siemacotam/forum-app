@@ -16,6 +16,7 @@ import { theme } from "theme";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import LanguageIcon from "@mui/icons-material/Language";
+import { StyledCard } from "./User.styled";
 
 export const User = ({
   user: { id, name, username, email, phone, website },
@@ -30,18 +31,7 @@ export const User = ({
 
   return (
     <Grid item xs={12} md={4}>
-      <Card
-        variant="outlined"
-        sx={{
-          cursor: "pointer",
-          bgcolor: theme.palette.grey[50],
-          ":hover": {
-            boxShadow: 5,
-            bgcolor: theme.palette.grey[100],
-          },
-        }}
-        onClick={navigateToUserPage}
-      >
+      <StyledCard variant="outlined" onClick={navigateToUserPage}>
         <CardContent>
           <Stack rowGap={2}>
             <RowStack>
@@ -73,7 +63,7 @@ export const User = ({
             </Box>
           </Stack>
         </CardContent>
-      </Card>
+      </StyledCard>
     </Grid>
   );
 };

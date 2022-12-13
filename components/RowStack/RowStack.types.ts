@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface RowStackProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }

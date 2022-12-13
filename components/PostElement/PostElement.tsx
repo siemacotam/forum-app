@@ -1,17 +1,10 @@
 import { useState } from "react";
-import {
-  Stack,
-  IconButton,
-  Card,
-  CardContent,
-  Typography,
-} from "@mui/material";
+import { Stack, IconButton, CardContent, Typography } from "@mui/material";
 import { PostElementProps } from "./PostElement.types";
 import { Post } from "global";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { DeleteModal } from "components/DeleteModal/DeleteModal";
 import { useRouter } from "next/router";
-import { theme } from "theme";
 import { useAppContext } from "hooks";
 import { setMessage } from "AppContext/Reducers/mainReducer.helpers";
 import { statusses } from "components/AlertMessage/AlertMessage.const";

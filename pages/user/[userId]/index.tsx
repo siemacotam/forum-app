@@ -32,11 +32,11 @@ function UserPage({ user: { id, name, posts } }: UserPageProps) {
     const postData = { ...values, userId: id };
     try {
       const res = await userServices.addPost(postData);
+      // in case - api ID will be repeted so here we change their number
       const newElement = { ...res, id: createId() };
 
       const newArray = [newElement, ...postsList];
       setPostList(newArray);
-      // in case - api ID will be repeted so here we change their number
 
       dispatch(addPost(newElement));
       dispatch(setMessage("New post added", statusses.success));
