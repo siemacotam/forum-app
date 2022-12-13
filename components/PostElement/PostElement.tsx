@@ -15,6 +15,7 @@ import { theme } from "theme";
 import { useAppContext } from "hooks";
 import { setMessage } from "AppContext/Reducers/mainReducer.helpers";
 import { statusses } from "components/AlertMessage/AlertMessage.const";
+import * as S from "./PostElement.styled";
 
 export const PostElement = ({
   post,
@@ -48,29 +49,17 @@ export const PostElement = ({
 
   return (
     <>
-      <Stack direction="row" alignItems="center">
+      <Stack direction="row" alignItems="center" spacing={2}>
         <IconButton onClick={openDialog}>
           <DeleteOutlineOutlinedIcon />
         </IconButton>
-        <Card
-          variant="outlined"
-          sx={{
-            flexGrow: 1,
-            cursor: "pointer",
-            bgcolor: theme.palette.grey[50],
-            ":hover": {
-              boxShadow: 5,
-              bgcolor: theme.palette.grey[100],
-            },
-          }}
-          onClick={navigateToPostPage}
-        >
+        <S.StyledCard variant="outlined" onClick={navigateToPostPage}>
           <CardContent>
             <Typography textAlign="center" component="p">
               {shortTitle}
             </Typography>
           </CardContent>
-        </Card>
+        </S.StyledCard>
       </Stack>
       {postToDelete && (
         <DeleteModal

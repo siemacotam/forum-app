@@ -10,7 +10,7 @@ export const PostHeader = ({
 }: PostHeaderProps): JSX.Element => {
   return (
     <>
-      <Typography component="span" textAlign="center" fontSize="1.5rem">
+      <Typography component="span" textAlign="center" fontSize="2rem">
         {name}
       </Typography>
       {<AlertMessage />}

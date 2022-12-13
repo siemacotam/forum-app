@@ -11,7 +11,6 @@ import userServices from "services/user-services";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
 import { CommentsList, PostDetails } from "components";
-import { theme } from "theme";
 
 interface UserPageProps {
   user: IUser;
@@ -21,10 +20,10 @@ interface UserPageProps {
 
 function UserPage({ user: { id, name }, post, comments }: UserPageProps) {
   return (
-    <Card variant="outlined" sx={{ bgcolor: theme.palette.grey[100] }}>
+    <Card variant="outlined">
       <CardContent>
         <Stack rowGap={3}>
-          <Typography component="span" textAlign="center" fontSize="1.5rem">
+          <Typography component="span" textAlign="center" fontSize="2rem">
             {name}
           </Typography>
           <Box>

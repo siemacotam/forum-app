@@ -1,13 +1,14 @@
 import { Card, CardContent, Stack, Typography } from "@mui/material";
+import { theme } from "theme";
 import { PostDetailsProps } from "./PostDetails.types";
 
 export const PostDetails = ({
   post: { body, title },
 }: PostDetailsProps): JSX.Element => (
-  <Card variant="outlined">
+  <Card variant="outlined" sx={{ bgcolor: theme.palette.grey[200] }}>
     <CardContent>
       <Stack rowGap={2}>
-        <Typography fontWeight="bold" fontSize="1.4rem" textAlign="center">
+        <Typography fontWeight="bold" fontSize="2rem" textAlign="center">
           {title}
         </Typography>
         <Card variant="outlined">

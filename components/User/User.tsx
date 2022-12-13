@@ -11,10 +11,11 @@ import {
 import { IUserProps } from "./User.types";
 import { useRouter } from "next/router";
 import { RowStack } from "components";
+import { theme } from "theme";
+
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import LanguageIcon from "@mui/icons-material/Language";
-import { theme } from "theme";
 
 export const User = ({
   user: { id, name, username, email, phone, website },
@@ -44,7 +45,10 @@ export const User = ({
         <CardContent>
           <Stack rowGap={2}>
             <RowStack>
-              <Avatar variant="square" sx={{ bgcolor: "purple" }}>
+              <Avatar
+                variant="square"
+                sx={{ bgcolor: "royalblue", width: 56, height: 56 }}
+              >
                 {username.substring(0, 1)}
               </Avatar>
               <Stack>

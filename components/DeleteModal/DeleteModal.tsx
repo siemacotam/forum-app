@@ -29,7 +29,7 @@ export const DeleteModal = ({
     setLoading(true);
     try {
       await userServices.deletePost(post.id);
-      dispatch(setMessage("Post deleted", statusses.success));
+      dispatch(setMessage(`Post id ${post.id} deleted`, statusses.success));
       dispatch(deletePost(post));
       handleDelete(post.id);
     } catch {
