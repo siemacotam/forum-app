@@ -52,10 +52,10 @@ export const DeleteModal = ({
       </DialogContent>
       <DialogActions>
         <Button disabled={loading} onClick={handleClose}>
-          Disagree
+          Cancel
         </Button>
         <Button disabled={loading} onClick={handleDeletePost} autoFocus>
-          {loading ? <CircularProgress size={16} /> : "Agree"}
+          {loading ? <CircularProgress size={16} /> : "Remove"}
         </Button>
       </DialogActions>
     </Dialog>

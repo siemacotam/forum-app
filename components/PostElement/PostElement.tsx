@@ -24,7 +24,7 @@ export const PostElement = ({
   const navigateToPostPage = () => {
     if (id < 100) {
       handleLoading();
-      push(`/user/${query.userId}/post/${id}`);
+      push(`/user/${query.userId}/${id}`);
     } else {
       dispatch(
         setMessage(
